@@ -7,9 +7,7 @@ library(tidyverse)
 load("1_clinical_info/medInfo_covariatesFactorised.RData")
 load("sampleInfoAll.RData")
 
-names(sampleInfo)
-
-## transcriptome ###############################################
+## transcriptome ###
 sampleInfoTrans <- sampleInfo[,c(1,6,10)]
 str(sampleInfoTrans)
 names(sampleInfoTrans) <- c("medicalID","sampleID","TCP")
