@@ -33,12 +33,18 @@ myDMP <- champ.DMP(myCombat,pheno = mydata$pd$Sample_Group,arraytype = "EPIC",ad
 
 res10 <- myDMP$NoTCP_to_TCP1
 diff10 <- res10[which(abs(res10$deltaBeta) > 0.1 & res10$P.Value < 0.05),]
+ID10 <- rownames(diff10)
 
 res20 <- myDMP$NoTCP_to_TCP2
 diff20 <- res20[which(abs(res20$deltaBeta) > 0.1 & res20$P.Value < 0.05),]
+ID20 <- rownames(diff20)
 
 res21 <- myDMP$TCP1_to_TCP2
 diff21 <- res21[which(abs(res21$deltaBeta) > 0.1 & res21$P.Value < 0.05),]
+ID21 <- rownames(diff21)
+
+IDAll <- union(ID10,ID20) %>% union(.,ID21)
+beta_DE <- myCombat[IDAll,] %>% as.data.frame
 
 ## linear FC
 source("5_MOFA2_V5/0_newcutoff_linearFC_fun.R")                  
