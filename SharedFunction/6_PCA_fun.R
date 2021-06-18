@@ -17,7 +17,8 @@ metaboPCA <- function(mydata,medinfo) {
   pca <- prcomp(df[,3:n])
   
   p = ggord(pca,df$TCP,ploy = FALSE,arrow = 0,ellipse = T,
-            vec_ext =0,txt = NULL,ellipse_pro = 0.95)
+            vec_ext =0,txt = NULL,ellipse_pro = 0.95, alpha_el = 0.3,
+            cols = c("#2ca25f","#fec44f","#de2d26"))
   p 
   
   return(p)
