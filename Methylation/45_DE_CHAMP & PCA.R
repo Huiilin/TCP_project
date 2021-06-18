@@ -60,3 +60,14 @@ Methyl_MOFA <- Mlist$deData
 ## save
 save(Methyl_MOFA,medinfoME56,file = "Methyl_FCfilter_DE.RData")
 save(Mlist,file = "Methyl_All.RData")
+
+## PCA
+source("6_PCA_fun.R")
+
+names(medinfoME56)[which(names(medinfoME56) == "Sample_Name")] <- "sampleID"
+
+p <- metaboPCA(Methyl_MOFA,medinfoME56)
+p
+
+ggsave(filename = "5_MOFA2_V5/PCA_Image/Methyl_PCA.png",width = 5,height = 5)
+
