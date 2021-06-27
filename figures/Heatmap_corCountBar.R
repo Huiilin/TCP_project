@@ -77,14 +77,50 @@ ha3 <- rowAnnotation(cor = anno_barplot(plasma26counts1,
                                         axis = T,
                                         bar_width = 0.8))
                                         
- p2 <- Heatmap(plasmaHeatmap1,cluster_rows = T,
+p2 <- Heatmap(plasmaHeatmap1,cluster_rows = T,
         column_split = Group$TCP,
         col = f1,name = "value",color_space = "LAB",
         show_column_names = F,
+        show_row_names = T,
         top_annotation = ha2,
         right_annotation = ha3)
 p2
 
+## anno_barplot of mofa absweight
+ha4color <- c("1" = '#e7e1ef')
+ha4 <- rowAnnotation(weight = anno_barplot(plasma26_1[,3],
+                                           gp = gpar(fill = ha4color),
+                                           axis_param = list(direction = "reverse"),
+                                           width = unit(25,"cm"),
+                                           border = F,
+                                           axis = T,
+                                           bar_width = 0.8,
+                                           height = unit(6,"cm")))
+p3 <- draw(ha4 + p2)
+p3
+
+## add legend
+lgd <- Legend(at = colnames(plasma26counts1)[1:5],
+              legend_gp = gpar(fill = mycolor),
+              labels = c("Plasma","Urine","Tissue","RNA","Methylation"),
+              type = "grid",
+              title = "Omics Groups")
+
+lgd2 <- Legend(at = colnames(plasma26_1)[3],legend_gp = gpar(fill = ha4color),
+               title = "absolute weight of MOFA weights",
+               type = "grid")
+
+pd <- packLegend(lgd,lgd2)
+
+## with legend
+p4 <- draw(p2,annotation_legend_list = pd)
+p4
+
+## save 
+library(export)
+graph2ppt(p3, "15_heatmap_plasma26_corFigure/heatmap_cor_v1.pptx",append = TRUE,
+          width = 45,height = 15)
+
+graph2ppt(p4, "15_heatmap_plasma26_corFigure/heatmap_cor_v1.pptx",append = TRUE,
+          width = 30,height = 15)
   
-
-
