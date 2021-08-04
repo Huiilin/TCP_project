@@ -3,13 +3,13 @@ options(scipen = 200)
 
 library(tidyverse)
 
-medInfo <- read.csv("1_clinical_info/clinical_info_20201103.csv",na = "NA",header = TRUE)
+## read in files
+medInfo <- read.csv(file,na = "NA",header = TRUE)
 
 medInfo <- medInfo[,c(1:5,8:12)]
 names(medInfo)
 names(medInfo)[4] <- "HistologyType"
 names(medInfo)[2] <- "medicalID"
-medInfo <- medInfo[!duplicated(medInfo$medicalID),]
 
 # covariates
 ## factor HistologyType
@@ -54,4 +54,4 @@ a1 = min(medInfo$BMI)
 a2 = max(medInfo$BMI)
 medInfo$BMIGroup <- cut(medInfo$BMI, breaks = c(a1,18.5,23,a2), right = T,include.lowest = T)
 
-save(medInfo,file = "1_clinical_info/medInfo_covariatesFactorised.RData")
+save(medInfo,file = "medInfo_covariatesFactorised.RData")
