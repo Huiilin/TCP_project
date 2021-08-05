@@ -4,11 +4,11 @@ options(scipen = 200)
 
 library(tidyverse)
 
-load("3_RNA_V2/gene_FPKM_54.RData")
-load("3_RNA_V2/IQRNumFunc_RNA.RData")
-load("3_RNA_V2/IQROutlierFunc_RNA.RData")
-load("3_RNA_V2/featureSelect_Func.RData")
-load("3_RNA_V2/outliers2NAFunc.RData")
+load("gene_FPKM_54.RData")
+load("IQRNumFunc_RNA.RData")
+load("IQROutlierFunc_RNA.RData")
+load("featureSelect_Func.RData")
+load("outliers2NAFunc.RData")
 
 ## remove low FPKM
 keep <- rowSums(FPKM54 == 0) == 54
