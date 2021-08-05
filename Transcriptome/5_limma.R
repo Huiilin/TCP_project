@@ -1,8 +1,8 @@
 rm(list = ls())
 options(scipen = 200)
 
-load("3_RNA_V2/gene_FPKM_54_KNNimputed.RData")
-load("3_RNA_V2/Trans_medinfo.RData")
+load("gene_FPKM_54_KNNimputed.RData")
+load("Trans_medinfo.RData")
 
 ## set clinical sample
 keep <- colnames(imputeDat2)
@@ -56,11 +56,11 @@ ID20 <- rownames(diffMetabos20)
 
 res21 <- topTable(efit,coef = 3, number = nrow(RNA_Adjust))
 diffMetabos21 <- res21[which(res21$P.Value < 0.05),]
-ID21 <- rownames(diffMetabos21
+ID21 <- rownames(diffMetabos21)
 
 IDAll <- union(ID10,ID20) %>% union(.,ID21)
 
 RNA_DE <- RNA_Adjust[IDAll,] %>% as.data.frame
 
 ###
-save(RNA_DE,RNA,file = "3_RNA_V2/gene_FPKM_54_DE.RData")
+save(RNA_DE,RNA,file = "gene_FPKM_54_DE.RData")
