@@ -4,7 +4,7 @@ options(scipen = 200)
 
 library(tidyverse)
 
-load("1_clinical_info/medInfo_covariatesFactorised.RData")
+load("medInfo_covariatesFactorised.RData")
 load("sampleInfoAll.RData")
 
 ## transcriptome ###
@@ -27,4 +27,4 @@ medInfoTrans$condition[medInfoTrans$TCP == 2] <- "TCP2"
 medInfoTrans$condition <- as.factor(medInfoTrans$condition)
 rownames(medInfoTrans) <- unlist(medInfoTrans$sampleID)
 
-save(medInfoTrans,sampleInfoTrans,file = "3_RNA_V2/Trans_medinfo.RData")  
+save(medInfoTrans,sampleInfoTrans,file = "Trans_medinfo.RData")  
