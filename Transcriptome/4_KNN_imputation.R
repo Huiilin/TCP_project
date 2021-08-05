@@ -1,7 +1,7 @@
 rm(list = ls())
 options(scipen = 200)
 
-load("3_RNA_V2/gene_FPKM_54_outliers2na.RData")
+load("gene_FPKM_54_outliers2na.RData")
 
 library(impute)
 library(tidyverse)
@@ -22,4 +22,4 @@ imputeDat2 <- aa$data
 
 table(is.na(imputeDat2))
 
-save(imputeDat2,file = "3_RNA_V2/gene_FPKM_54_KNNimputed.RData")
+save(imputeDat2,file = "gene_FPKM_54_KNNimputed.RData")
