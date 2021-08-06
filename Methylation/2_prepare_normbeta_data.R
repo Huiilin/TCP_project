@@ -4,7 +4,7 @@ options(scipen = 200)
 
 library(tidyverse)
 
-load("4_Methyl/ME_medinfo.RData")
+load("ME_medinfo.RData")
 
 ## read in beta value
 file = "4_Methyl/NormBeta_20191217.csv"
@@ -22,4 +22,4 @@ beta56 <- beta56[,medinfoME56$sampleID]
 all(medinfoME56$sampleID %in% names(beta56))
 all(medinfoME56$sampleID == names(beta56))
 
-save(beta56,medinfoME56,file = "4_Methyl/NormBeta56.RData")
+save(beta56,medinfoME56,file = "NormBeta56.RData")
