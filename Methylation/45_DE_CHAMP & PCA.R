@@ -6,8 +6,8 @@ library(tidyverse)
 library(ChAMP)
 
 ## load in data
-load("4_Methyl/NormBeta56.RData")
-load("4_Methyl/Methyl_QC_CV_03_intersect.RData")
+load("NormBeta56.RData")
+load("Methyl_QC_CV_03_intersect.RData")
 
 names(medinfoME56)[which(names(medinfoME56) == "sampleID")] <- "Sample_Name"
 names(medinfoME56)[which(names(medinfoME56) == "condition")] <- "Sample_Group"
@@ -47,7 +47,7 @@ IDAll <- union(ID10,ID20) %>% union(.,ID21)
 beta_DE <- myCombat[IDAll,] %>% as.data.frame
 
 ## linear FC
-source("5_MOFA2_V5/0_newcutoff_linearFC_fun.R")                  
+source("0_newcutoff_linearFC_fun.R")                  
 
 select(diff10,-c("NoTCP_AVG",'TCP1_AVG')) -> diff10
 select(diff20,-c("NoTCP_AVG",'TCP2_AVG')) -> diff20
@@ -73,7 +73,3 @@ source("6_PCA_fun.R")
 names(medinfoME56)[which(names(medinfoME56) == "Sample_Name")] <- "sampleID"
 
 p <- metaboPCA(Methyl_MOFA,medinfoME56)
-p
-
-ggsave(filename = "5_MOFA2_V5/PCA_Image/Methyl_PCA.png",width = 5,height = 5)
-
