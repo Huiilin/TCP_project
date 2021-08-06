@@ -1,7 +1,7 @@
 rm(list = ls())
 options(scipen = 200)
 
-load("5_MOFA2_V5/RData_FCfilter/RNA_All.RData")
+load("RNA_All.RData")
 
 library(ReactomePA)
 library(org.Hs.eg.db)
@@ -42,19 +42,12 @@ for (i in 1:3) {
   pathway[i] <- list(b)
 }
 
-## writeFiles
-rm(a,b,i,ID)
-
-tmp <- paste(getwd(),"5_MOFA2_V5/Enrich/",sep = "/")
-tmp
+## combine 
 pathway10 <- pathway[[1]] %>% mutate(., contrast = rep("0 vs 1",nrow(.)))
 pathway20 <- pathway[[2]] %>% mutate(., contrast = rep("0 vs 2",nrow(.)))
 pathway21 <- pathway[[3]] %>% mutate(., contrast = rep("1 vs 2",nrow(.)))
 
 pathAll <- rbind(pathway10,pathway20) %>% rbind(.,pathway21)
 
-## writeFiles
-write.csv(pathAll, file = paste(tmp,"EnrichRes_RNA.csv", sep = ""), row.names = F)
-
 ## saveData
-save.image(file = "5_MOFA2_V5/Enrich/Enrich_RNA.RData")
+save.image(file = "Enrich_RNA.RData")
