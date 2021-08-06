@@ -6,7 +6,7 @@ library(tidyverse)
 ##################################################################
 ### select FC increase or decrease features among 3 groups ######
 ##################################################################
-load("3_RNA_V2/RData/RNA_limma_1219.RData")
+load("RNA_limma_1219.RData")
 
 resdata <- list("0vs1" = res10,"0vs2" = res20, "1vs2" = res21)
 FCdata <- list()
@@ -57,14 +57,11 @@ keep <- FCAll_3$featureID
 RNA_MOFA <- RNA_DE[keep,]
 
 ## saveFiles
-save(RNA_MOFA,RNA,file = "5_MOFA2_V5/RNA_FCfilter_DE.RData")
+save(RNA_MOFA,RNA,file = "RNA_FCfilter_DE.RData")
 
 ## PCA 
-source("2_Metabolites_V2_meansel/functions/6_PCA_fun.R")
-load("3_RNA_V2/RData/Trans_medinfo.RData")
+source("6_PCA_fun.R")
+load("Trans_medinfo.RData")
 
 RNA <- dplyr::filter(medInfoTrans,sampleID %in% colnames(RNA_MOFA))
 pRNA <- metaboPCA(RNA_MOFA,RNA)
-pRNA
-
-ggsave(filename = "5_MOFA2_V5/PCA_Image/RNA_PCA.png",width = 5,height = 5)
