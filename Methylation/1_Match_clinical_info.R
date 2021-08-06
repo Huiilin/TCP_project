@@ -4,7 +4,7 @@ options(scipen = 200)
 
 library(tidyverse)
 
-load("1_clinical_info/medInfo_covariatesFactorised.RData")
+load("medInfo_covariatesFactorised.RData")
 load("sampleInfoAll.RData")
 
 # methylation 
@@ -28,4 +28,4 @@ medinfoME$condition[medinfoME$TCP == 2] <- "TCP2"
 medinfoME$condition <- as.factor(medinfoME$condition)
 rownames(medinfoME) <- unlist(medinfoME$sampleID)
 
-save(medinfoME,sampleInfoME, file = "4_Methyl/ME_medinfo.RData")
+save(medinfoME,sampleInfoME, file = "ME_medinfo.RData")
